@@ -1,4 +1,7 @@
 /bootstrap/compiled.php
+/vendor/
+/vendor/*
+/laravel/
 .env.*.php
 .env.php
 .env
