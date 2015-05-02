@@ -1,0 +1,132 @@
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #333333;
+}
+
+.container{
+    max-width: 786px;
+    margin: 0 auto;
+    text-align: center;
+    padding:0px 40px;
+}
+
+.logo {
+    margin-bottom: 10px;
+    font-size: 55pt;
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-style: italic;
+}
+
+img{
+    max-width: 100%;
+}
+
+h2{
+    display: block;
+    font-size: 2em;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+.number{
+    margin-top:60px;
+    font-size: 48pt;
+    color: #1CB0DD;
+    text-shadow: 1px 1px 0px #1C97DD;
+    font-weight: 700;
+}
+.blue{
+    color:#1C98DD;
+    font-weight: bold;
+}
+
+h3{
+    display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+p{
+    font-size: 17pt;
+    text-align: left;
+}
+p br{
+    line-height: 2;
+}
+
+.question{
+    margin-top: 60px;
+}
+
+img.creme{
+    width: 360px;
+    display: inline-block;
+    margin:5px;
+}
+
+#faq h2, #testimonials h2{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 60px;
+}
+#faq h3, #testimonials h3{
+    margin-top:60px;
+    text-align: left;
+}
+
+a{
+    color:#1CB0DD;
+}
+a:hover{
+    color:#1889AC;
+}
+
+blockquote{
+    border-left:4px #1CB0DD solid;
+    text-align: left;
+    padding: 10px 0px 10px 50px;
+}
+blockquote p{
+    margin: 5px;
+}
+span.author{
+    margin-top:0;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.menu{
+    margin-top:30px;
+}
+.menu li{
+    display: inline;
+}
+.menu li:before{
+    content:" | ";
+}
+.menu li:first-child:before{
+    content:"";
+}
+.menu a{
+    font-size: 14px;
+    color:#000;
+}
+.menu a:hover, .menu li.active a{
+    color:#1CB0DD;
+}
+a.back-to-creme{
+    font-size:18px;
+    color:#000;
+}
+
+.legal br{
+    line-height: 1;
+}

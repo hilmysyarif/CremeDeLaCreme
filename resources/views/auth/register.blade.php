@@ -1,65 +1,73 @@
-@extends('app')
+@extends('auth.app')
+
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Register</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Register
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
+<section class="striped">
+	<div class="container-fluid">
+		<div class="banner">
+		    <div class="container">
+		        <h2 class="sublead">Inscrivez-vous dès maintenant</h2>
+		    </div>
 		</div>
 	</div>
+</section>
+
+<div class="container">
+	<div class="row" id="signup-form">
+        {!! Form::open(['route' => 'admin.auth.store', 'method' => 'POST',  'class' => 'col-md-8 col-md-offset-2', 'id' => 'billing-form']) !!}
+
+
+		    				@if (!$errors->isEmpty())
+							<div class="alert alert-danger">
+								<strong>Whoops!</strong> There were some problems with your input.<br><br>
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+							@endif
+
+
+
+
+					         {!!Form::label('name', 'Nom d\'utilisateur *', ['class' => 'col-md-4 control-label'])!!}
+
+					             {!!Form::text('name', null, ['class' => 'form-control input-md', 'id' => 'name', 'placeholder' => 'Nom d\'utilisateur', 'required' => true])!!}
+					             <span class="label label-danger hide">Username taken. Try something else.</span>
+
+
+
+					    <!-- Text input-->
+					    <div class="form-group row">
+					         {!!Form::label('email', 'Adresse E-mail *', ['class' => 'col-md-4 control-label'])!!}
+
+					        <div class="col-md-8">
+					             {!!Form::email('email', null, ['class' => 'form-control input-md', 'id' => 'email', 'placeholder' => 'Adresse E-mail', 'required' => true])!!}
+					        </div>
+					    </div>
+
+					    <!-- Text input-->
+					    <div class="form-group row">
+                            {!!Form::label('password', 'Mot de passe *', ['class' => 'col-md-4 control-label'])!!}
+					        <div class="col-md-8">
+					            {!!Form::password('password', ['class' => 'form-control input-md', 'id' => 'password', 'placeholder' => 'Mot de passe', 'required' => true])!!}
+					        </div>
+					    </div>
+
+                        <div class="form-group row">
+                            {!!Form::label('password_confirmation', 'Confirmer *', ['class' => 'col-md-4 control-label'])!!}
+                            <div class="col-md-8">
+                                {!!Form::password('password_confirmation', ['class' => 'form-control input-md', 'id' => 'password_confirmation', 'placeholder' => 'Confirmer votre mot de passe', 'required' => true])!!}
+                            </div>
+                        </div>
+					</fieldset>
+
+					
+				</div>
+			</div>
+    	{!!Form::close()!!}
+    </div>
 </div>
-@endsection
+
+@stop

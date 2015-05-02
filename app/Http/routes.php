@@ -11,11 +11,27 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+/* Static Pages */
+Route::get('/', 'HomeController@indexStaticPage');
+Route::get('contact', 'HomeController@contactStaticPage');
+Route::get('jobs', 'HomeController@jobsStaticPage');
+Route::get('conditions-generales', 'HomeController@conditionStaticPage');
+Route::get('mentions-legales', 'HomeController@legalStaticPage');
+Route::get('espace-presse', 'HomeController@presseStaticPage');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+/* Admin Pages */
+
+
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::get('login', 'RegisterController@getLogin');
+	Route::post('login', 'RegisterController@login');
+	Route::get('logout', 'RegisterController@logout');
+	Route::resource('auth', 'RegisterController');
+
+	Route::group(['middleware' => 'auth'], function()
+	{
+	});
+
+});
