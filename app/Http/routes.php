@@ -32,6 +32,20 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::group(['middleware' => 'auth'], function()
 	{
+		Route::get('dashboard', 'AdminController@showDashboard');
 	});
+
+	Route::group(['middleware' => 'admin'], function()
+	{
+		Route::resource('users', 'UserController');
+		Route::resource('statistics', 'StatisticController');
+		Route::resource('payments', 'PaymentController');
+
+	});
+
+
+	Route::resource('messages', 'MessagesController');
+	Route::get('my-stats', 'StatisticController@showMyStats');
+	Route::resource('students', 'StudentController');
 
 });

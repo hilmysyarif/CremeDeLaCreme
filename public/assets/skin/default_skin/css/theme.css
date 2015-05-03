@@ -24215,3 +24215,7 @@ body.timeline-page .panel-clone {
 .logo{
   color:#FFF;
 }
+
+body{
+  min-height: inherit;
+}
