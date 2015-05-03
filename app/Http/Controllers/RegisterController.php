@@ -68,10 +68,10 @@ class RegisterController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $remember))
         {
-            return redirect('/');
+            return redirect('/admin/dashboard');
         }
 
-        return redirect()->back()->withInput()->with('error', 'Mauvaise combinaision mot de passe / email');
+        return redirect()->back()->withInput()->with('error', 'Mauvaise combinaison mot de passe / email');
     }
 
     /**
