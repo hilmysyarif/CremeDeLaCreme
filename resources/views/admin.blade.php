@@ -70,48 +70,54 @@
           <li>
             <a href="{{ url('admin/dashboard')}}">
               <span class="imoon imoon-office"></span>
-              <span class="sidebar-title">Tableau de bord</span>
+              <span class="sidebar-title">Tableau de bord </span>
             </a>
           </li>
         @if(Auth::user()->rank > 0)
-          <li class="sidebar-label pt20">Administrateur</li>
+          <li class="sidebar-label pt20">Administrateur </li>
           <li>
             <a href="{{ url('admin/users')}}">
               <span class="imoon imoon-user3"></span>
-              <span class="sidebar-title">Utilisateurs</span>
+              <span class="sidebar-title">Utilisateurs </span>
             </a>
           </li>
           <li>
             <a href="{{ url('admin/payments')}}">
               <span class="glyphicons glyphicons-usd"></span>
-              <span class="sidebar-title">Paiements</span>
+              <span class="sidebar-title">Paiements </span>
             </a>
           </li>
           <li>
             <a href="{{ url('admin/statistics')}}">
               <span class="fa fa-bar-chart-o"></span>
-              <span class="sidebar-title">Statistiques</span>
+              <span class="sidebar-title">Statistiques </span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('admin/statistics')}}">
+              <span class="fa fa-bar-chart-o"></span>
+              <span class="sidebar-title">Logs utilisateurs </span>
             </a>
           </li>
         @endif
 
-          <li class="sidebar-label pt15">Opérateur</li>
+          <li class="sidebar-label pt15">Opérateur </li>
           <li>
             <a href="{{ url('admin/messages')}}">
               <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">Messages</span>
+              <span class="sidebar-title">Messages </span>
             </a>
           </li>
           <li>
             <a href="{{ url('admin/students')}}">
               <span class="glyphicons glyphicons-turtle"></span>
-              <span class="sidebar-title">Etudiants</span>
+              <span class="sidebar-title">Etudiants </span>
             </a>
           </li>
           <li>
             <a href="{{ url('admin/my-stats')}}">
               <span class="imoon imoon-stats"></span>
-              <span class="sidebar-title">Mes statistiques</span>
+              <span class="sidebar-title">Mes statistiques </span>
             </a>
           </li>
           
