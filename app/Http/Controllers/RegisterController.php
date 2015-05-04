@@ -39,11 +39,17 @@ class RegisterController extends Controller {
      */
     public function store(CreateUserRequest $request)
     {
-        $user = new User([
+       $user = new User([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
         ]);
+
+        if($user->save()){
+            return redirect()->back();
+        }
+
+
 
     }
 

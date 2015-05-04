@@ -32,16 +32,6 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -60,18 +50,28 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return 'yes';
+		$user = User::find($id);
+		return view('admin.users.edit')->with(compact('user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
-	 * @return Response
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
 	 */
-	public function update($id)
+    public function update(Request $request, $id)
 	{
-		//
+		$user = User::find($id);
+		$user->name = $request->name;
+		$user->email = $request->email;
+		$user->rank = $request->rank;
+		if($request->password){
+			$user->password = bcrypt($request['password']);
+		}
+		$user->save();
+		return redirect('admin/users')->with('message','Utilisateur modifié avec succès');
 	}
 
 	/**

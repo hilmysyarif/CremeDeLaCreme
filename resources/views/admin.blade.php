@@ -4,10 +4,7 @@
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
-  <title>AdminDesigns - A Responsive HTML5 Admin UI Framework</title>
-  <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
-  <meta name="description" content="AdminDesigns - A Responsive HTML5 Admin UI Framework">
-  <meta name="author" content="AdminDesigns">
+  <title>Administration - Crème de la Crème</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
@@ -73,7 +70,7 @@
           <li>
             <a href="{{ url('admin/dashboard')}}">
               <span class="imoon imoon-office"></span>
-              <span class="sidebar-title">Tabeau de bord</span>
+              <span class="sidebar-title">Tableau de bord</span>
             </a>
           </li>
         @if(Auth::user()->rank > 0)
