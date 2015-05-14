@@ -19,7 +19,7 @@ Route::get('jobs', 'HomeController@jobsStaticPage');
 Route::get('conditions-generales', 'HomeController@conditionStaticPage');
 Route::get('mentions-legales', 'HomeController@legalStaticPage');
 Route::get('espace-presse', 'HomeController@presseStaticPage');
-
+Route::get('payments/{id}', 'PaymentController@getPayPage');
 /* Admin Pages */
 
 

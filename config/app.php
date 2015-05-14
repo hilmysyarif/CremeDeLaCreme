@@ -150,6 +150,8 @@ return [
 		 */
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Jelovac\Bitly4laravel\Bitly4laravelServiceProvider',
+
 
 
 	],
@@ -201,6 +203,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Form'=> 'Illuminate\Html\FormFacade',
         'HTML'=> 'Illuminate\Html\HtmlFacade',
+		'Bitly' => 'Jelovac\Bitly4laravel\Facades\Bitly4laravel',
+
 
 	],
 

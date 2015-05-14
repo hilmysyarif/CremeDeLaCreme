@@ -5,6 +5,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Models\Payment;
+
+use Bitly;
+
 class PaymentController extends Controller {
 
 	/**
@@ -14,7 +18,8 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$payments = Payment::all();
+		return view('admin.payments.index')->with(compact("payments"));
 	}
 
 	/**
@@ -32,9 +37,27 @@ class PaymentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$payment = new Payment;
+		$payment->client_name = $request->client_name;
+		$payment->client_email = $request->client_email;
+		$payment->description = $request->description;
+		$payment->price = $request->price;
+		if($request->client_address){
+			$payment->client_address = $request->client_address;
+		}
+
+		// BitLy URL
+
+		$payment->save();
+
+		$payment->shortLink = Bitly::shorten( url('http://cremedelacreme.io/payments/'.$payment->id) ) ['data']['url'];
+		$payment->save();
+
+
+		return redirect()->back()->with('success', 'Demande de paiement créée avec succès'); 
+
 	}
 
 	/**
@@ -45,7 +68,7 @@ class PaymentController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+
 	}
 
 	/**
@@ -79,6 +102,27 @@ class PaymentController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function getPayPage($id){
+		$payment = Payment::find($id);
+		if(isset($payment)){
+			return view('static.payForm')->with(compact("payment"));		
+		}
+		else
+		{
+			return redirect('/');
+		}
+	}
+
+	public function postPayPage($id, Request $request){
+		$payment = Payment::find($id);
+		if(!isset($payment)){
+			return redirect('/');
+		}
+
+		
+
 	}
 
 }
