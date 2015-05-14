@@ -28,21 +28,9 @@
 		<div class="row text-center">
 			<h1>Crème de la Crème</h1>
 			<br>
-			<p>Merci de bien vouloir cliquer sur le bouton ci-dessous pour effectuer le paiement.<br>
-			PS : Ce formulaire est sécurisé et vos informations bancaires ne sont pas conservées.<br><br></p>
-			<form action="#" method="POST">
-			<input type="hidden" name="price" value="{{$payment->price}}">
-			<input type="hidden" name="description" value="{{$payment->description}}">
-			  <script
-			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-			    data-label="Payer par carte bancaire"
-			    data-key="pk_live_lxTz6jcolVihHHZqwmsFCgnD"
-			    data-amount="{{$payment->price}}"
-			    data-currency="eur"
-			    data-name="Crème de la Crème"
-			    data-description="{{$payment->description}}">
-			  </script>
-			</form>
+			<p>Le paiement demandé n'existe pas, a déjà été payé ou a été annulé. Merci de nous contacter pour plus de renseignements ou pour recevoir le bon lien de paiement.<br>
+			PS : Tous nos formulaires de paiement sont sécurisés et vos informations bancaires ne sont pas conservées.<br><br></p>
+			
 		</div>
 	</div>
 	</br></br>

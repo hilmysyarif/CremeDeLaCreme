@@ -80,4 +80,17 @@ class HomeController extends Controller {
 		return 'presse';
 	}
 
+
+	public function paymentPayedPage(){
+		return view('static.payment.payed');
+	}
+
+	public function paymentValidatePage(){
+		return view('static.payment.validate');
+	}
+
+	public function paymentErrorPage(){
+		return view('static.payment.error');
+	}
+
 }

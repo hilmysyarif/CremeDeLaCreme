@@ -151,6 +151,7 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Jelovac\Bitly4laravel\Bitly4laravelServiceProvider',
+        'Laravel\Cashier\CashierServiceProvider',
 
 
 

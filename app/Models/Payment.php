@@ -1,8 +1,12 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Billable;
+use Laravel\Cashier\Contracts\Billable as BillableContract;
 
-class Payment extends Model {
+class Payment extends Model implements BillableContract{
+
+    use Billable;
 
 	protected $table = 'payments';
 

@@ -54,9 +54,15 @@
                         <td>
                           <a href="{{url('admin/payments/'.$payment->id)}}" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher plus d'informations"><i class="fa fa-search"></i></a>
                           <span class="mr15"></span>
+                          @if($payment->status == 'unpayed')
                           <a href="{{  $payment->shortLink }}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Accéder au lien raccourci"><i class="fa fa-globe"></i></a>
                           <span class="mr15"></span>
-                          <a href="https://dashboard.stripe.com/test/payments/{{ $payment->stripe_transaction }}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Vérifier le paiement sur Stripe"><i class="fa fa-cc-stripe"></i></a>
+                          @else
+                          <a href="#" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher la facture"><i class="fa fa-file-pdf-o"></i></a>
+                          <span class="mr15"></span>
+                          @endif
+
+                          <a href="https://dashboard.stripe.com/test/payments/{{ $payment->stripe_transaction_id }}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Vérifier le paiement sur Stripe"><i class="fa fa-cc-stripe"></i></a>
 
                         </td>
                       </tr>

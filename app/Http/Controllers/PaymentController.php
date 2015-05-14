@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Payment;
-
+use App\Models\Bill;
 use Bitly;
 
 class PaymentController extends Controller {
@@ -106,23 +106,59 @@ class PaymentController extends Controller {
 
 	public function getPayPage($id){
 		$payment = Payment::find($id);
-		if(isset($payment)){
-			return view('static.payForm')->with(compact("payment"));		
+		if(!isset($payment)){
+			return redirect('payment/error');
+		}
+		elseif( $payment->status == 'payed' || $payment->status == 'canceled'){
+			return redirect('payment/payed');
 		}
 		else
 		{
-			return redirect('/');
+			return view('static.payment.payForm')->with(compact("payment"));		
 		}
 	}
 
 	public function postPayPage($id, Request $request){
 		$payment = Payment::find($id);
-		if(!isset($payment)){
-			return redirect('/');
+		if(!isset($payment) OR $payment->status == 'payed' || $payment->status == 'canceled'){
+			return redirect('payment/error');
 		}
 
-		
+		if($request->price != $payment->price){
+			return redirect('/payments/'.$payment->id)->with('error', 'Merci de re-essayer. Vous n\'avez pas été débité suite à un problème technique.<br>Si le problème persiste, merci de nous tenir informé !');
+		}
+
+		$charge = $payment->charge($payment->price, [
+			'amount' => $request->price,
+			'currency' => 'eur',
+		    'source' => $request->stripeToken,
+		    'description' => $request->description,
+		]);
+
+		if($charge->paid){
+			$payment->stripe_transaction_id = $charge->id;
+			$payment->status = 'payed';
+			$payment->client_email = $charge->source->name;
+			$payment->save();
+
+			$bill = new Bill;
+			$bill->payment_id = $payment->id;
+			$bill->card_id = $charge->source->id;
+			$bill->last_four = $charge->source->last4;
+			$bill->save();
+
+			return redirect('/payment/validate')->with(array(
+				'description'	=>	$request->description,
+				'amount'		=>	$request->price,
+			));
+		}
+		else
+		{
+			return redirect('/payments/'.$payment->id)->with('error', 'Merci de re-essayer. Vous n\'avez pas été débité suite à un problème technique.<br>Si le problème persiste, merci de nous tenir informé !');
+		}
+
 
 	}
+
 
 }
