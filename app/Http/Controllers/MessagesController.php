@@ -5,7 +5,18 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Models\Message;
+use App\Models\Conversation;
+
+use Auth;
+
 class MessagesController extends Controller {
+
+	private $smsGateway;
+
+	public function __construct(smsGateway $smsGateway){
+		$this->smsGateway = $smsGateway;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +25,7 @@ class MessagesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('admin.messages.index');
 	}
 
 	/**
@@ -24,7 +35,7 @@ class MessagesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('admin.messages.create');
 	}
 
 	/**
@@ -32,9 +43,38 @@ class MessagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		// Verifications sur le telephone
+		$telephoneClean = $request->telephone;
+		if(substr($telephoneClean, 0, 1) == ' '){
+			$telephoneClean = substr($telephoneClean, 1);
+		}
+		if(substr($telephoneClean,0,2) == '33'){
+			$telephoneClean = '+'.$telephoneClean;
+		}
+
+
+		$request->message = str_replace("'", "’", $request->message);
+
+		$message = new Message;
+		$message->message_id = 0;
+		$message->telephone = $telephoneClean;
+		$message->message = $request->message;
+		$message->sender_id = Auth::user()->id;
+		$message->status = 'success';
+		$message->save();
+		$send = $this->smsGateway->sendMessageToNumber($request->telephone, $request->message);
+		$message->message_id = $send['response']['result']['success'][0]['id'];
+		$message->save();
+
+		// Get Conversation
+		if($conversation = Conversation::where('number', $telephoneClean)->first())
+		{
+			$conversation->hasNewMessage = 0;
+			$conversation->save();
+		}
+
 	}
 
 	/**

@@ -88,6 +88,12 @@
             </a>
           </li>
           <li>
+            <a href="{{ url('admin/missions')}}">
+              <span class="fa fa-briefcase"></span>
+              <span class="sidebar-title">Missions </span>
+            </a>
+          </li>
+          <li>
             <a href="{{ url('admin/statistics')}}">
               <span class="fa fa-bar-chart-o"></span>
               <span class="sidebar-title">Statistiques </span>

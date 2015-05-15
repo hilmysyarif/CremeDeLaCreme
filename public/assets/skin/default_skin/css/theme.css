@@ -23885,6 +23885,11 @@ blockquote.blockquote-dark {
   border-top-color: #3b3f4f;
 }
 /* ==============================================
+   Boxed Layout - Coming Soon
+=================================================
+  A. Boxed Settings
+================================================= */
+/* ==============================================
    III. DEMO PAGES
 	  - Global Changes
 	  
@@ -24209,13 +24214,63 @@ body.timeline-page .panel-clone {
     min-width: 0 !important;
   }
 }
-
-
-
-.logo{
-  color:#FFF;
+.logo {
+  color: #FFF;
 }
-
-body{
+body {
   min-height: inherit;
+}
+.list-messages {
+  padding: 0;
+}
+.list-messages li {
+  padding: 10px 20px;
+  list-style: none;
+}
+.list-messages li:hover {
+  background: #777777;
+  color: #FFF;
+  cursor: pointer;
+}
+.list-messages li.active {
+  background: #3d3a39;
+  color: #FFF;
+}
+.list-messages li .newMessage {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+  background: #3498db;
+}
+.conv-messages {
+  margin: 0;
+  padding: 0;
+}
+.conv-messages li {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 15px;
+  margin-bottom: 19px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 51%;
+  list-style: none;
+}
+.conv-messages li.received {
+  background: #3bafda;
+  color: #ffffff;
+}
+.conv-messages li.send {
+  background: #37bc9b;
+  color: #ffffff;
+  text-align: right;
+  position: relative;
+  right: -50%;
+}
+.conv-messages li small {
+  display: block;
+  color: #CCC;
+  font-style: italic;
 }

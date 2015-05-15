@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::resource('users', 'UserController');
 		Route::resource('statistics', 'StatisticController');
 		Route::resource('payments', 'PaymentController');
+		Route::resource('missions', 'MissionController');
 
 	});
 
@@ -52,4 +53,12 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('my-stats', 'StatisticController@showMyStats');
 	Route::resource('students', 'StudentController');
 
+
+	// Routes API
+	Route::get('api/messages', 'ApiController@getActiveConversations');
+	Route::get('api/messages/get/{phone}', 'ApiController@getMessagesOnAConversation');
+	Route::post('api/messages/store', 'MessagesController@store');
+	Route::get('api/messages/setStatus', 'ApiController@setMessageStatus');
+	Route::post('api/messages/get', 'ApiController@getMessage');
+	Route::get('api/messages/setRead', 'ApiController@setMessageRead');
 });

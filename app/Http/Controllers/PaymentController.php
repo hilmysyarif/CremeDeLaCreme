@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Payment;
 use App\Models\Bill;
+use App\Models\Mission;
 use Bitly;
 
 class PaymentController extends Controller {
@@ -54,6 +55,13 @@ class PaymentController extends Controller {
 
 		$payment->shortLink = Bitly::shorten( url('http://cremedelacreme.io/payments/'.$payment->id) ) ['data']['url'];
 		$payment->save();
+
+
+		$mission = new Mission;
+		$mission->description = $payment->description;
+		$mission->payment_id = $payment->id;
+		$mission->user_id = Auth::user()->id;
+		$mission->status = 0;
 
 
 		return redirect()->back()->with('success', 'Demande de paiement créée avec succès'); 

@@ -1,2 +1,71 @@
 
 // This file is reserved for your custom changes or additions
+
+
+
+.logo{
+  color:#FFF;
+}
+
+body{
+  min-height: inherit;
+}
+
+.list-messages{
+	padding:0;
+	li{
+		padding:10px 20px;
+		list-style: none;	
+		&:hover{
+			background:@gray-light;
+			color:#FFF;
+			cursor: pointer;
+		}
+		&.active{
+			background:@sub-menu-bg;
+			color:#FFF;
+		}
+		.newMessage{
+			height: 15px;
+			width: 15px;
+			border-radius: 50%;
+			display: inline-block;
+			float:right;
+			background: @brand-primary;
+		}
+	}
+}
+
+
+.conv-messages{
+	margin: 0;
+	padding: 0;
+	li{
+		color: @white;
+		font-size: @alert-font-size;
+		padding: @alert-padding;
+		margin-bottom: @line-height-computed;
+		border: 1px solid rgba(0,0,0,0.1);
+		border-radius: @alert-border-radius;
+		width: 51%;
+		list-style: none;
+		&.received{
+			background: @alert-info-bg;
+			color: @alert-info-text;
+		}
+		&.send{
+			background: @alert-system-bg;
+			color: @alert-system-text;
+			text-align: right;
+			position: relative;
+			right: -50%;
+		}
+
+		small{
+			display: block;
+			color:#CCC;
+			font-style: italic;
+		}
+
+	}
+}
