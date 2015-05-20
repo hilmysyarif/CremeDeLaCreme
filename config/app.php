@@ -205,7 +205,7 @@ return [
         'Form'=> 'Illuminate\Html\FormFacade',
         'HTML'=> 'Illuminate\Html\HtmlFacade',
 		'Bitly' => 'Jelovac\Bitly4laravel\Facades\Bitly4laravel',
-
+		'Str'      => 'Illuminate\Support\Str',
 
 	],
 

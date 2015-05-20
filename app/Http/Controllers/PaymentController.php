@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Bill;
 use App\Models\Mission;
 use Bitly;
+use Auth;
 
 class PaymentController extends Controller {
 
@@ -43,8 +44,9 @@ class PaymentController extends Controller {
 		$payment = new Payment;
 		$payment->client_name = $request->client_name;
 		$payment->client_email = $request->client_email;
+		$payment->client_phone = $request->client_phone;
 		$payment->description = $request->description;
-		$payment->price = $request->price;
+		$payment->price = $request->price*100;
 		if($request->client_address){
 			$payment->client_address = $request->client_address;
 		}
@@ -62,6 +64,7 @@ class PaymentController extends Controller {
 		$mission->payment_id = $payment->id;
 		$mission->user_id = Auth::user()->id;
 		$mission->status = 0;
+		$mission->save();
 
 
 		return redirect()->back()->with('success', 'Demande de paiement créée avec succès'); 

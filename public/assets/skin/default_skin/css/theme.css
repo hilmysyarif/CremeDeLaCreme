@@ -24262,6 +24262,12 @@ body {
   background: #3bafda;
   color: #ffffff;
 }
+.conv-messages li.received .deleteMessage {
+  position: absolute;
+  top: 10px;
+  left: 420px;
+  cursor: pointer;
+}
 .conv-messages li.send {
   background: #37bc9b;
   color: #ffffff;
@@ -24269,8 +24275,18 @@ body {
   position: relative;
   right: -50%;
 }
+.conv-messages li.send .deleteMessage {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
 .conv-messages li small {
   display: block;
   color: #CCC;
   font-style: italic;
+}
+.conv-messages li button {
+  background: transparent;
+  border: none;
 }

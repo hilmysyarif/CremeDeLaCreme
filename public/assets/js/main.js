@@ -631,6 +631,11 @@ var Core = function(options) {
    }
 }();
 
+function dateConverter(date){
+   var newDate = date.split('-');
+   return newDate[2].substr(0,2)+"/"+newDate[1]+"/"+newDate[0];
+}
+
 // Global Library of Theme colors for Javascript plug and play use  
 var bgPrimary = '#4a89dc',
    bgPrimaryL = '#5d9cec',

@@ -48,21 +48,23 @@
                         <td>{{$payment->id}}</td>
                         <td>{{$payment->client_name }}<br>{{$payment->client_mail}}</td>
                         <td>{{$payment->description}}</td>
-                        <td>{{$payment->price}}€</td>
+                        <td>{{$payment->price/100}}€</td>
                         <td>{{$payment->getStatus()}}</td>
                         <td>{{ date('d/m/Y', strtotime($payment->created_at))}}</td>
                         <td>
-                          <a href="{{url('admin/payments/'.$payment->id)}}" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher plus d'informations"><i class="fa fa-search"></i></a>
+                          <a href="{{url('admin/missions/')}}" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher la mission"><i class="fa fa-search"></i></a>
                           <span class="mr15"></span>
                           @if($payment->status == 'unpayed')
-                          <a href="{{  $payment->shortLink }}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Accéder au lien raccourci"><i class="fa fa-globe"></i></a>
+                          <a href="{{  $payment->shortLink }}" class="copyLink" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Copier le lien raccourci"><i class="fa fa-globe"></i></a>
                           <span class="mr15"></span>
                           @else
-                          <a href="#" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher la facture"><i class="fa fa-file-pdf-o"></i></a>
+                          <a href="{{url('admin/payments/'.$payment->id)}}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Afficher la facture"><i class="fa fa-file-pdf-o"></i></a>
                           <span class="mr15"></span>
                           @endif
 
+                          @if($payment->stripe_transaction_id)
                           <a href="https://dashboard.stripe.com/test/payments/{{ $payment->stripe_transaction_id }}" target="_blank" data-toggle="tooltip" data-placement="bottom" data-original-title="Vérifier le paiement sur Stripe"><i class="fa fa-cc-stripe"></i></a>
+                          @endif
 
                         </td>
                       </tr>
@@ -98,6 +100,18 @@
 
             </div>
             <!-- end section row section -->
+            
+            <div class="section row">
+              <div class="col-md-12">
+                <label for="phone" class="field prepend-icon">
+                  {!!Form::text('client_phone', null, ['class' => 'gui-input', 'id' => 'client_phone', 'placeholder' => 'N° de téléphone (ex : +33...)', 'required' => true, 'autocomplete'=>'off', 'onfocus'=>'this.value = "+33"'])!!}
+                  <label for="phone" class="field-icon">
+                    <i class="fa fa-phone"></i>
+                  </label>
+                </label>
+              </div>
+              <!-- end section -->
+            </div>
 
             <div class="section row">
               <div class="col-md-12">
@@ -142,7 +156,7 @@
             <div class="section row">
               <div class="col-md-12">
                 <label for="password" class="field prepend-icon">
-                  {!!Form::text('price', null, ['class' => 'gui-input', 'id' => 'price', 'placeholder' => 'Prix (en centimes d\'euros)', 'required' => true])!!}
+                  {!!Form::text('price', null, ['class' => 'gui-input', 'id' => 'price', 'placeholder' => 'Prix (en euros)', 'required' => true])!!}
                   <label for="password" class="field-icon">
                     <i class="fa fa-dollar"></i>
                   </label>
@@ -190,7 +204,7 @@
 	{!! HTML::script('vendor/plugins/datatables/media/js/dataTables.bootstrap.js') !!}
 
   {!! HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js') !!}
-
+  {!! HTML::script('assets/js/utility/zeroclipboard/ZeroClipboard.min.js') !!}
 @stop
 
 @section('js-inside')
@@ -251,4 +265,12 @@
       }
 
     });
+  
+    $('.copyLink').on('click', function(e){
+      e.preventDefault(); 
+        window.prompt("Pour copier le lien: Ctrl+C, Enter", $(this).attr('href'));
+    });
+
+
+
 @stop

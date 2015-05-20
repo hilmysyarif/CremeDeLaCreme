@@ -5,29 +5,30 @@
 	<div class="container">
 		<img src="{{ asset('img/logos-ecoles.png') }}" alt="Différentes écoles proposées par de Crème de la Crème">
 		<h2>Quand les étudiants des grandes écoles révolutionnent le service à la demande</h2>	
-		<div class="number">07 56 990 146</div>
-		<i>Envoyez simplement "<span class="blue">CREME</span>" à ce numéro pour être mis en relation.</i>
+		<div class="number">07 83 987 770</div>
+		<i>Envoyez "<span class="blue">CREME</span>" à ce numéro gratuit pour être mis en relation.</i>
 		<h3 class="question">Comment est-ce que cela fonctionne ?</h3>
 		<p class="paragraph">
-			Des étudiants qualifiés faisant partie des plus grandes écoles et universités françaises sont à votre disposition 24h/24 pour répondre à toutes vos demandes de services.<br>
-			Faites-nous part de votre besoin par SMS et nous traiterons votre demande en un temps record.  
+			Des étudiants faisant partie des plus grandes écoles et universités françaises sont à votre disposition 24h/24 pour répondre à vos demandes de services professionnels.<br>
+			Faites-nous part de votre besoin par SMS et nous traiterons votre demande dans les plus brefs délais.  
         </p>
 	</div>
 </section>
 <section>
 	<div class="container">
+		<h2 class="question">Que puis-je demander ?</h2>
         <h3 class="question">Soutien scolaire et services professionnels</h3>
         <img src="{{ asset('img/Creme1.png') }}" class="creme" alt="">
         <img src="{{ asset('img/Creme2.png') }}" class="creme" alt="">
+        <h3 class="question">Etudes de proximité</h3>
+        <img src="{{ asset('img/Creme10.png') }}" class="creme" alt="">
+        <img src="{{ asset('img/Creme9.png') }}" class="creme" alt="">
         <h3 class="question">Recrutement et emploi à la demande</h3>
         <img src="{{ asset('img/Creme3.png') }}" class="creme" alt="">
         <img src="{{ asset('img/Creme4.png') }}" class="creme" alt="">
         <h3 class="question">Publicité et marketing</h3>
         <img src="{{ asset('img/Creme5.png') }}" class="creme" alt="">
         <img src="{{ asset('img/Creme6.png') }}" class="creme" alt="">
-        <h3 class="question">Etudes de proximité</h3>
-        <img src="{{ asset('img/Creme10.png') }}" class="creme" alt="">
-        <img src="{{ asset('img/Creme9.png') }}" class="creme" alt="">
         <h3 class="question">Services pour étudiants internationaux</h3>
         <img src="{{ asset('img/Creme8.png') }}" class="creme" alt="">
         <img src="{{ asset('img/Creme7.png') }}" class="creme" alt="">
@@ -47,15 +48,9 @@
 </section>
 <section id="testimonials">
 	<div class="container">
-		<h2>Témoignages</h2>
-		<blockquote>
-			<p>C'est un véritable court-circuit de l’économie traditionnelle.</p>
-			<span class="author">– Yann L.</span>
-		</blockquote>
-		<blockquote>
-			<p>Cette nouvelle utilisation du smartphone pour fournir du travail et des services va révolutionner de nombreux fondements du capitalisme du XXème siècle.</p>
-			<span class="author">– The Economist</span>
-		</blockquote>
+		<h2>Ils parlent de Crème de la Crème</h2>
+		<a href="www.20minutes.fr/paris/1599047-20150430-paris-etudiants-grandes-ecoles-mettent-service" target="_blank"><img src="{{ asset('img/logo-20minutes.jpg') }}" alt=""></a>
+		<a href="www.20minutes.fr/paris/1599047-20150430-paris-etudiants-grandes-ecoles-mettent-service" target="_blank"><img src="{{ asset('img/logo-clique.jpg') }}" alt=""></a>
 	</div>
 </section>
 @stop

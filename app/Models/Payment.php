@@ -17,7 +17,7 @@ class Payment extends Model implements BillableContract{
 			break;
 
 			case 'payed':
-				echo '<span class="text-success">Payé</span>';
+				echo '<span class="text-success">Payé le '.date('d/m/Y', strtotime($this->updated_at)).'</span>';
 			break;
 
 			case 'canceled':
@@ -28,6 +28,11 @@ class Payment extends Model implements BillableContract{
 				echo 'Erreur';
 			break;
 		}
+	}
+
+	public function getMission(){
+		$mission = Mission::where('payment_id', $this->id)->first();
+		return $mission;
 	}
 
 }

@@ -24,9 +24,8 @@ Route::get('payment/validate', 'HomeController@paymentValidatePage');
 Route::get('payment/error', 'HomeController@paymentErrorPage');
 Route::get('payments/{id}', 'PaymentController@getPayPage');
 Route::post('payments/{id}', 'PaymentController@postPayPage');
+
 /* Admin Pages */
-
-
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('login', 'RegisterController@getLogin');
@@ -55,10 +54,32 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 	// Routes API
-	Route::get('api/messages', 'ApiController@getActiveConversations');
-	Route::get('api/messages/get/{phone}', 'ApiController@getMessagesOnAConversation');
-	Route::post('api/messages/store', 'MessagesController@store');
-	Route::get('api/messages/setStatus', 'ApiController@setMessageStatus');
-	Route::post('api/messages/get', 'ApiController@getMessage');
-	Route::get('api/messages/setRead', 'ApiController@setMessageRead');
+	Route::group(['prefix'=>'api'],function(){
+		// Messages API
+		Route::group(['prefix'=>'messages'], function(){
+			Route::get('/', 'ApiController@getActiveConversations');
+			Route::get('/get/{phone}', 'ApiController@getMessagesOnAConversation');
+			Route::post('/store', 'MessagesController@store');
+			Route::get('/setStatus', 'ApiController@setMessageStatus');
+			Route::get('/getStatus/{phone}', 'ApiController@getStatusMessage');
+			Route::post('/get', 'ApiController@getMessage');
+			Route::get('/setRead', 'ApiController@setMessageRead');
+			Route::get('/delete', 'ApiController@softDeleteMessage');
+			Route::get('/deleteConversation', 'ApiController@softDeleteConversation');
+		});
+
+		// Missions API
+		Route::group(['prefix'=>'missions'], function(){
+			Route::get('{id}', 'MissionController@show');
+		});
+
+	});
+});
+
+/* API Mobile */
+Route::group(['prefix'=>'api/mobile/v1'], function(){
+	// Missions API
+	Route::group(['prefix'=>'missions'], function(){
+		Route::get('/', 'MobileApiController@indexMission');
+	});
 });
